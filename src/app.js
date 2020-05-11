@@ -1,6 +1,4 @@
-let now = new Date();
-
-function formatWeekDay() {
+function formatWeekDay(now) {
   let days = [
     "Sunday",
     "Monday",
@@ -11,15 +9,20 @@ function formatWeekDay() {
     "Saturday",
   ];
   let weekDay = days[now.getDay()];
-  let weekDayHtml = document.querySelector("#week-day");
-  weekDayHtml.innerHTML = weekDay;
+  return weekDay;
 }
 
-function formatTime() {
+function formatTime(now) {
   let currentHour = now.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
   let currentMinute = now.getMinutes();
-  let currentTime = document.querySelector("#time");
-  currentTime.innerHTML = `${currentHour}h${currentMinute}min`;
+  if (currentMinute < 10) {
+    currentMinute = `0{currentMinute}`;
+  }
+
+  return `${currentHour}h${currentMinute}min`;
 }
 
 function showCity(event) {
@@ -29,8 +32,26 @@ function showCity(event) {
   currentCity.innerHTML = cityValue.value;
 }
 
+function switchToFahrenheit() {
+  let currTemp = document.querySelector("#current-temperature");
+  currTemp.innerHTML = "82";
+}
+function switchToCelcius() {
+  let currTemp = document.querySelector("#current-temperature");
+  currTemp.innerHTML = "28";
+}
+
+let date = new Date();
+let weekDayHtml = document.querySelector("#week-day");
+weekDayHtml.innerHTML = formatWeekDay(date);
+let currentTime = document.querySelector("#time");
+currentTime.innerHTML = formatTime(date);
+
 let searchCityForm = document.querySelector("#search-city-form");
 searchCityForm.addEventListener("submit", showCity);
 
-formatWeekDay();
-formatTime();
+let fahrenheitLink = document.querySelector("#switch-to-fahrenheit");
+let celciusLink = document.querySelector("#switch-to-celcius");
+
+fahrenheitLink.addEventListener("click", switchToFahrenheit);
+celciusLink.addEventListener("click", switchToCelcius);
