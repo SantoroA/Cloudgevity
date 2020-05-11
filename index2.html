@@ -35,7 +35,7 @@
 
         <div class="row my-4">
           <div class="col-2 text-center">
-            <form>
+            <form id="search-current-location">
               <div class="row text-center">
                 <button
                   type="submit"
@@ -48,29 +48,33 @@
             </form>
           </div>
           <div class="col-10">
-            <div class="row">
-              <div class="col-9 align-items-center d-flex">
-                <input
-                  type="search"
-                  class="form-control"
-                  placeholder="Enter City"
-                />
+            <form id="search-city-form">
+              <div class="row">
+                <div class="col-9 align-items-center d-flex">
+                  <input
+                    type="search"
+                    class="form-control"
+                    id="city-input"
+                    autocomplete="off"
+                    placeholder="Enter City"
+                  />
+                </div>
+                <div class="col-3 text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-dark d-block m-auto shadow-sm"
+                    id="button-search-city"
+                  >
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col-3 text-center">
-                <button
-                  type="submit"
-                  class="btn btn-dark d-block m-auto shadow-sm"
-                  id="button-search-city"
-                >
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
 
         <!-- current city -->
-        <h1 class="text-center">
+        <h1 class="text-center" id="current-city">
           Brasilia
         </h1>
 
@@ -96,8 +100,8 @@
         <!-- secondary info -->
         <div class="row secondary-info">
           <div class="col-3 divider">
-            Monday <br />
-            04h08min
+            <div class="text-center" id="week-day"></div>
+            <div class="text-center" id="time"></div>
           </div>
           <div
             class="col-3 divider align-items-center d-flex justify-content-center"
