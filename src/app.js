@@ -32,15 +32,6 @@ function showCity(event) {
   currentCity.innerHTML = cityValue.value;
 }
 
-function switchToFahrenheit() {
-  let currTemp = document.querySelector("#current-temperature");
-  currTemp.innerHTML = "82";
-}
-function switchToCelcius() {
-  let currTemp = document.querySelector("#current-temperature");
-  currTemp.innerHTML = "28";
-}
-
 let date = new Date();
 let weekDayHtml = document.querySelector("#week-day");
 weekDayHtml.innerHTML = formatWeekDay(date);
@@ -49,9 +40,3 @@ currentTime.innerHTML = formatTime(date);
 
 let searchCityForm = document.querySelector("#search-city-form");
 searchCityForm.addEventListener("submit", showCity);
-
-let fahrenheitLink = document.querySelector("#switch-to-fahrenheit");
-let celciusLink = document.querySelector("#switch-to-celcius");
-
-fahrenheitLink.addEventListener("click", switchToFahrenheit);
-celciusLink.addEventListener("click", switchToCelcius);

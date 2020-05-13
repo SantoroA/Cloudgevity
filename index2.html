@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cloudgevity</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -19,6 +18,8 @@
       src="https://kit.fontawesome.com/e7e93bbeb3.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Cloudgevity</title>
   </head>
   <body>
     <div class="container">
@@ -35,17 +36,15 @@
 
         <div class="row my-4">
           <div class="col-2 text-center">
-            <form id="search-current-location">
-              <div class="row text-center">
-                <button
-                  type="submit"
-                  class="btn btn-dark d-block m-auto shadow-sm"
-                  id="button-current-city"
-                >
-                  <i class="fas fa-map-marker-alt"></i>
-                </button>
-              </div>
-            </form>
+            <div class="row text-center">
+              <button
+                type="submit"
+                class="btn btn-dark d-block m-auto shadow-sm"
+                id="button-current-city"
+              >
+                <i class="fas fa-map-marker-alt"></i>
+              </button>
+            </div>
           </div>
           <div class="col-10">
             <form id="search-city-form">
@@ -56,6 +55,7 @@
                     class="form-control"
                     id="city-input"
                     autocomplete="off"
+                    autofocus="on"
                     placeholder="Enter City"
                   />
                 </div>
@@ -75,7 +75,7 @@
 
         <!-- current city -->
         <h1 class="text-center" id="current-city">
-          Brasilia
+          Winterfell
         </h1>
 
         <!-- main info -->
@@ -84,15 +84,13 @@
             <img class="sunny" src="images/undraw_sunlight_tn7t.svg" alt="" />
           </div>
 
-          <div class="col-4 d-flex justify-content-center align-items-center">
+          <div class="col-4 d-flex justify-content-center">
             <div class="row">
               <div class="col-6 mr-0">
-                <p class="temperature" id="current-temperature">
-                  28
-                </p>
+                <p class="temperature" id="temperature-element">-20</p>
               </div>
 
-              <div class="col-6 pl-0">
+              <div class="col-6 p-0">
                 <a id="switch-to-celcius" href="#">°C</a> |
                 <a id="switch-to-fahrenheit" href="#">°F</a>
               </div>
@@ -109,15 +107,17 @@
           <div
             class="col-3 divider align-items-center d-flex justify-content-center"
           >
-            Sunny
+            <div class="text-center description" id="weather-description">
+              Winter is coming
+            </div>
           </div>
           <div class="col-3 divider">
-            Precipitation<br />
-            0%
+            Wind Speed
+            <div class="text-center" id="wind-speed">10m/s</div>
           </div>
           <div class="col-3">
-            Humidity<br />
-            34%
+            Humidity
+            <div class="text-center" id="humidity">30%</div>
           </div>
         </div>
       </section>
@@ -202,6 +202,6 @@
         </div>
       </section>
     </div>
-    <script src="src/app.js"></script>
+    <script src="src/app2.js"></script>
   </body>
 </html>

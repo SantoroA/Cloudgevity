@@ -12,14 +12,21 @@ body {
   height: 50px;
   color: #f4f4f4;
   font-size: 1.2em;
+  transition: all 0.2s ease-in-out;
 }
+
+#button-current-city:hover,
+#button-search-city:hover {
+  background-color: #96648f;
+}
+
 h1 {
   font-size: 3em;
   font-weight: 700;
   color: #584153;
 }
 .temperature {
-  font-size: 2.5em;
+  font-size: 2.7em;
   font-weight: 700;
 }
 .sunny {
@@ -58,4 +65,7 @@ h1 {
 .forecast-temp {
   font-size: 0.9em;
   line-height: 1.2;
+}
+.description {
+  text-transform: capitalize;
 }
