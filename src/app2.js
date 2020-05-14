@@ -25,14 +25,39 @@ function formatTime(now) {
   return `${currentHour}h${currentMinute}min`;
 }
 
-function showCityInfo(event) {
-  event.preventDefault();
-  let cityValue = document.querySelector("#city-input");
+function search(city) {
   let apiKey = "2b3715c71ce846298a7fbee953bac1d5";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
   axios
-    .get(`${apiUrl}q=${cityValue.value}&appid=${apiKey}&units=metric`)
+    .get(`${apiUrl}q=${city}&appid=${apiKey}&units=metric`)
     .then(formatWeatherInfo);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityValue = document.querySelector("#city-input").value;
+  search(cityValue);
+}
+
+function fetchLondon(event) {
+  event.preventDefault();
+  let cityValue = "London";
+  search(cityValue);
+}
+function fetchParis(event) {
+  event.preventDefault();
+  let cityValue = "Paris";
+  search(cityValue);
+}
+function fetchRome(event) {
+  event.preventDefault();
+  let cityValue = "Rome";
+  search(cityValue);
+}
+function fetchNewYork(event) {
+  event.preventDefault();
+  let cityValue = "New York";
+  search(cityValue);
 }
 
 function handlePosition(position) {
@@ -46,22 +71,20 @@ function handlePosition(position) {
 }
 
 function formatWeatherInfo(response) {
-  let tempCelsius = Math.round(response.data.main.temp);
-  let description = response.data.weather[0].description;
-  let humidity = response.data.main.humidity;
-  let showCity = response.data.name;
-  let country = response.data.sys.country;
-  let windSpeed = response.data.wind.speed;
-  let temperatureElement = document.querySelector("#temperature-element");
-  let descriptionElement = document.querySelector("#weather-description");
-  let humidityElement = document.querySelector("#humidity");
-  let cityElement = document.querySelector("#current-city");
-  let windElement = document.querySelector("#wind-speed");
-  cityElement.innerHTML = `${showCity}, ${country}`;
-  temperatureElement.innerHTML = tempCelsius;
-  descriptionElement.innerHTML = description;
-  humidityElement.innerHTML = `${humidity}%`;
-  windElement.innerHTML = `${windSpeed}m/s`;
+  document.querySelector(
+    "#current-city"
+  ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  document.querySelector("#temperature-element").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector("#weather-description").innerHTML =
+    response.data.weather[0].main;
+  document.querySelector(
+    "#humidity"
+  ).innerHTML = `${response.data.main.humidity}%`;
+  document.querySelector(
+    "#wind-speed"
+  ).innerHTML = `${response.data.wind.speed}m/s`;
 }
 
 function getPosition() {
@@ -75,7 +98,19 @@ currentTime.innerHTML = formatTime(date);
 weekDayHtml.innerHTML = formatWeekDay(date);
 
 let searchCityForm = document.querySelector("#search-city-form");
-searchCityForm.addEventListener("submit", showCityInfo);
+searchCityForm.addEventListener("submit", handleSubmit);
 
 let currCityButton = document.querySelector("#button-current-city");
 currCityButton.addEventListener("click", getPosition);
+
+let londonLink = document.querySelector("#london-link");
+let parisLink = document.querySelector("#paris-link");
+let romeLink = document.querySelector("#rome-link");
+let newYorkLink = document.querySelector("#new-york-link");
+
+londonLink.addEventListener("click", fetchLondon);
+parisLink.addEventListener("click", fetchParis);
+romeLink.addEventListener("click", fetchRome);
+newYorkLink.addEventListener("click", fetchNewYork);
+
+search("London");
